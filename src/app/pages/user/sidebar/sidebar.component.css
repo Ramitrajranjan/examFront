@@ -1,0 +1,7 @@
+
+.quiz button:hover{
+    background-color: bisque;
+} 
+.sidebar{
+    position: fixed;
+}

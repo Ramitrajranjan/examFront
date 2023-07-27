@@ -1,0 +1,7 @@
+.menu button:hover{
+    background-color: bisque;
+    color: red;
+}
+.sidebar{
+    position: fixed;
+}

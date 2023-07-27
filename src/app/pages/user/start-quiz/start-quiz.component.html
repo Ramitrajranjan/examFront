@@ -1,0 +1,134 @@
+<div class="bootstrap-wrapper" *ngIf="!isSubmit">
+    <div class="container-fluid">
+       <div class="row">
+
+            <div class="col-md-2">
+                <mat-card style="margin-top: 50px; background-color: azure;">
+                    <mat-card-header>
+                        <mat-card-title>Instructions</mat-card-title>
+                    </mat-card-header>
+                    <mat-divider></mat-divider>
+                        <mat-card-content>
+                            <ul>
+                                <li>Every question has 4 options one correct three uncorrect.</li>
+                                <li>Each question carry 2 Marks.</li>
+                                <li>Mark your answers carefully.</li>
+                                
+                            </ul>
+                        </mat-card-content>
+                </mat-card>
+            </div>
+
+
+
+            <div class="col-md-8">
+                <ng-container *ngIf="questions">
+                    <h1 class="mt10"> <b>{{questions[0].quiz.title}} </b> Quiz</h1>
+                </ng-container>
+                <mat-card *ngFor="let q of questions; let i= index" class="mt10">
+                    <mat-card-content>
+                        <p><b>Q {{i+1}})</b><span class="ml10" [innerHTML]="q.content"></span></p>
+                        <mat-divider>
+                        </mat-divider>
+                        <div class="row mt10">
+                            <div class="col-md-6">
+                                <input [(ngModel)]="q.givenAnswer"type="radio"
+                                [value]="q.option1"[name]="'inputField' + i"/>{{q.option1}}
+                            </div>
+                            <div class="col-md-6">
+                                <input type="radio"[value]="q.option2"[name]="'inputField' + i"
+                                [(ngModel)]="q.givenAnswer"/>{{q.option2}}
+                            </div>
+                        </div>
+                        <div class="row mt10">
+                            <div class="col-md-6">
+                                <input type="radio"[value]="q.option3"
+                                [name]="'inputField' + i"[(ngModel)]="q.givenAnswer"/>{{q.option3}}
+                            </div>
+                            <div class="col-md-6">
+                                <input type="radio"[value]="q.option4"
+                                [name]="'inputField' + i"[(ngModel)]="q.givenAnswer"/>{{q.option4}}
+                            </div>
+                        </div>
+                    </mat-card-content>
+                </mat-card>
+                <div class="container text-center mt20 mb20">
+                    <button
+                        (click)="submitQuiz()" 
+                        mat-raised-button color="primary">Submit Quiz</button>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <mat-card style="margin-top: 50px; background-color: bisque;">
+                    <mat-card-header class="mb10">
+                        <mat-card-title>Remaining Time: </mat-card-title>
+                        <mat-card-subtitle >Quiz gets auto submitted when timer will reach to <b>0 min:0 sec</b></mat-card-subtitle>
+                    </mat-card-header>
+                    <mat-divider></mat-divider>
+                    <mat-card-content class="mt10">
+                        <mat-spinner
+                            mode="determinate"
+                            color="accent"
+                            style="margin: auto"
+                            [value]="(timer/(this.questions.length*1*60))*100"
+                        ></mat-spinner>
+                        <div class="container" style="margin: auto">
+                            <h2>{{getFormattedTime()}}</h2>
+                        </div>
+                    </mat-card-content>
+                </mat-card>
+            </div>
+
+       </div>
+    </div>
+</div>
+
+<div class="bootstrap-wrapper" *ngIf="isSubmit">
+    <div class="container-fluid">
+    <div class="row mt20 text-center">
+        <div class="col-md-8 offset-md-2">
+            <mat-card>
+                <mat-card-header class="text-center" >
+                    <mat-card-title>Quiz Result</mat-card-title>
+                </mat-card-header>
+                <mat-card-content class="mt20">
+                    <table style="width: 100%;">
+                        <tr>
+                            <th>Total Questions</th>
+                            <th>Attempted</th>
+                            <th>Unattempted</th>
+                            <th>Correct</th>
+                            <th>Not Correct</th>
+                            <th>Total Marks</th>
+                            <th>Marks Obtained</th>
+                        </tr>
+                        <tr>
+                            <td>{{totalQuestions}}</td>
+                            <td>{{attempted}}</td>
+                            <td>{{unattempted}}</td>
+                            <td>{{correctAnswers}}</td>
+                            <td>{{totalQuestions - correctAnswers}}</td>
+                            <td>{{totalMarks}}</td>
+                            <td>{{marksGot}}</td>
+                        </tr>
+                    </table>
+                </mat-card-content>
+                <mat-card-actions>
+                    <div class="container text-center mt20 mb20">
+                        <button 
+                        mat-raised-button 
+                        color="warn"
+                        (click)="printPage()"
+                        >Print</button>
+                        <button 
+                        mat-raised-button color="primary"
+                         class="ml20"
+                         [routerLink]="'/user-dashboard/0'"
+                         >Home</button>
+                    </div>
+                </mat-card-actions>
+            </mat-card>
+        </div>
+    </div>
+</div>
+</div>

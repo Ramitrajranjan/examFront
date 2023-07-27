@@ -1,0 +1,117 @@
+<div class="body">
+    <div class="bootstrap-wrapper">
+        <div class="container-fluid">
+            <h1 class="mt20">My Cart</h1>
+            <div class="row mt20" *ngIf="quizzes">
+                <div class="col-md-4" *ngFor="let q of quizzes">
+                        <mat-card class="mb20">
+                            <mat-card-header>
+                                <div mat-card-avatar class="example-header-image"></div>
+                                <mat-card-title>{{q.title}}</mat-card-title>
+                                <mat-card-subtitle>{{q.category.title}}</mat-card-subtitle>
+                            </mat-card-header>
+                            <mat-card-content class="mt10">
+                                <p class="truncate">{{q.description}}</p>
+                            </mat-card-content>
+                            <mat-card-actions class="action">
+                                <!-- <button mat-raised-button color="primary" [routerLink]="'/user-dashboard/instructions/'+q.qId">
+                                    Start
+                                </button> -->
+                                <button mat-button color="primary"> <span>Ques:{{q.numberOfQuestions}}</span></button>
+                                <button mat-button color="primary"><span>M.M:{{q.maxMarks}}</span></button>
+                                <button mat-button color="primary"><span>Price: Rs {{q.price}}</span></button>
+                                <button mat-button color="warn" (click)="delete(q)">
+                                    <mat-icon>delete</mat-icon>Delete
+                                </button>
+                            </mat-card-actions>
+                        </mat-card>
+                    </div>
+                    </div>
+                    <div *ngIf="quizzes!=0">
+                        <div class="text-center">
+                            <button  class="mb20" mat-raised-button color="primary"  routerLink="/user-dashboard/0">
+                                Shop More
+                            </button>  
+                             <button mat-raised-button style="color: white; background-color: red;" class="ml20 mb20" (click)="emptyCart()">
+                                Empty Cart
+                             </button>  
+                             <button  mat-raised-button style="color: white; background-color: green;" class="ml20 mb20" (click)="checkout()">
+                                Place Order
+                             </button>
+                        </div> 
+                    </div>       
+                <div class="row" *ngIf="quizzes.length==0">
+                    <div class="col-md-12 text-center">
+                        <img src="../../../../assets/cart.jpg" style="height: 480px; width: 640px;" alt=" Empty Cart">      
+                    <div class="text-center">
+                        <button class="mb20" mat-raised-button color="primary"   routerLink="/user-dashboard/0">
+                            Shop 
+                        </button>  
+                    </div>
+                </div>
+        </div>
+    </div>
+</div>
+<!-- 
+<div class="body">
+    <div class="bootstrap-wrapper">
+        <div class="container-fluid">
+            <div class="row" *ngIf="quizzes">
+                <div class="col-md-9" *ngFor="let q of quizzes">
+                    <mat-card class="mb20">
+                        <mat-card-header>
+                            <div mat-card-avatar class="example-header-image"></div>
+                            <mat-card-title>{{q.title}}</mat-card-title>
+                            <mat-card-subtitle>{{q.category.title}}</mat-card-subtitle>
+                        </mat-card-header>
+                        <mat-card-content class="mt10">
+                            <p class="truncate">{{q.description}}</p>
+                        </mat-card-content>
+                        <mat-card-actions class="action">
+                             <button mat-raised-button color="primary" [routerLink]="'/user-dashboard/instructions/'+q.qId">
+                                Start
+                            </button>
+                            <button mat-button color="primary"> <span>Ques:{{q.numberOfQuestions}}</span></button>
+                            <button mat-button color="primary"><span>M.M:{{q.maxMarks}}</span></button>
+                            <button mat-button color="warn" (click)="delete(q)">
+                                <mat-icon>delete</mat-icon>Delete
+                            </button>
+                        </mat-card-actions>
+                    </mat-card>
+                </div>
+                <div class="col-md-3">
+                    <div>
+                        <button mat-raised-button color="primary"  routerLink="/user-dashboard/0">
+                           Shop More
+                       </button>
+                    </div>  
+                    <div>
+                        <button mat-raised-button style="color: white; background-color: red;" class="ml20" (click)="emptyCart()">
+                            Empty Cart
+                         </button>
+                    </div>  
+                    <div>
+                        <button mat-raised-button style="color: white; background-color: green;" class="ml20" (click)="checkout()">
+                            Place Order
+                         </button>
+                    </div>  
+                </div>
+            </div>
+            <div class="row" >
+                <div class="col-md-12"*ngIf="quizzes.length==0">
+                    <mat-card>
+                        <mat-card-content>
+                            <h1>Your cart is empty</h1>
+                        </mat-card-content>
+                    </mat-card>
+                </div>      
+                <div class="container-fluid" style=" text-align: center;" *ngIf="quizzes.length==0">
+                    <h3 class="mt20">Add Quiz to your cart</h3>
+                    <button mat-raised-button color="primary"   routerLink="/user-dashboard/0">
+                       Shop 
+                    </button>  
+                </div>
+            </div>
+        </div>
+    </div>
+</div> -->

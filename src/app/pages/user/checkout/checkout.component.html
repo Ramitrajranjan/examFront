@@ -1,0 +1,106 @@
+<div class="bootstrap-wrapper">
+    <div class="container-fluid" *ngIf="isSubmit">
+        <h1 class="mt20 mb20 text-center">Order Summary</h1>
+        <div *ngIf="quizzes">
+            <table class="table table-striped">
+                <tr>
+                    <td><strong> Sr.No.</strong></td>
+                    <td><strong>Quiz Id</strong></td>
+                    <td><strong>Topic</strong></td>
+                    <!-- <td><strong>Category</strong></td> -->
+                    <td><strong>Price</strong></td>
+                </tr>
+                <tr *ngFor="let quiz of quizzes, let i=index">
+                    <td>{{i+1}}</td>
+                    <td>Q2023 {{quiz.qId}}</td>
+                    <td>{{quiz.title}}</td>
+                    <!-- <td>{{quiz.category.title}}</td> -->
+                    <td>{{quiz.price}}</td>
+                </tr>    
+            </table>
+        </div>
+    </div>
+    <div class=" text-center mt20" *ngIf="isSubmit">
+        <h3 ><strong>Total Payable Amount:  </strong> <span style="color: red;"><strong> Rs {{totalAmount}}</strong></span> </h3>
+    </div>
+    <div class="text-center mt20" style="position: relative;" *ngIf="isSubmit">
+        <button mat-raised-button color="primary"  routerLink="/user-dashboard/0">
+            <mat-icon>home</mat-icon>Home
+        </button> 
+        <button *ngIf="totalAmount" mat-raised-button 
+            class="ml20"
+            style="color: white; background-color: green;"  
+            (click)="payment()" >
+            Make Payment
+        </button> 
+    </div>
+
+    <div class="container" *ngIf="!isSubmit">
+        <div style="background-color: burlywood;">
+        <h1 class="mt20 mb20 text-center">Your Created Order <span><strong>20EX{{createdOrder.user.id}}23A{{createdOrder.id}}</strong></span></h1>
+        </div>
+        <div class="mt20 mb20">
+            <h3 class="text-center">Order Details</h3>
+            <table class="table table-striped">
+                <tr style="background-color: lightcyan;">
+                    <td>OrderId</td>
+                    <td>Order Date</td>
+                    <td>Total Amount</td>
+                </tr>
+                <tr>
+                    <td>{{createdOrder.id}}</td>
+                    <td>{{createdOrder.orderDate}}</td>
+                    <td>{{createdOrder.price}}</td>
+                </tr>
+            </table>
+        </div>
+        <div class="mt20 mb20">
+            <h3 class="text-center mt10 mb10">Product List</h3>
+            <table class="table table-striped">
+                <tr style="background-color: lightseagreen;">
+                    <td>Quiz Id</td>
+                    <td>Quiz Topic</td>
+                    <td>Quiz Price</td>
+                </tr>
+                <tr *ngFor="let quiz of createdOrder.cartItems">
+                    <td>{{quiz.qId}}</td>
+                    <td>{{quiz.title}}</td>
+                    <td>{{quiz.price}}</td>
+                </tr>
+            </table>
+        </div>
+        <div class="mt20 mb20">
+            <h3 class="text-center mt10 mb10">Buyer Details</h3>
+            <table class="table table-striped">
+                <tr style="background-color: lightcyan;">
+                    <td>Id</td>
+                    <td>Name</td>
+                    <td>Email</td>
+                    <td>Username</td>
+                    <td>Contact</td>
+                </tr>
+                <tr>
+                    <td>{{createdOrder.user.id}}</td>
+                    <td>{{createdOrder.user.firstName}} {{createdOrder.user.lastName}}</td>
+                    <td>{{createdOrder.user.email}}</td>
+                    <td>{{createdOrder.user.username}}</td>
+                    <td>{{createdOrder.user.phone}}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class=" text-center mt20" *ngIf="!isSubmit">
+        <h3 ><strong>Paid Amount:  </strong> <span style="color: red;"><strong>{{createdOrder.price}}</strong></span> </h3>
+    </div>
+    <div class="text-center mt20" style="position: relative;" *ngIf="!isSubmit">
+        <button mat-raised-button color="primary"  routerLink="/user-dashboard/0">
+            <mat-icon>home</mat-icon> Move to Homepage
+        </button> 
+        <!--     <button *ngIf="totalAmount" mat-raised-button  
+            class="ml20"
+            style="color: white; background-color: green;"  
+            routerLink="/payment">
+            Make Payment
+        </button>   -->
+    </div>
+</div>

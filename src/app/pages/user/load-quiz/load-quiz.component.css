@@ -1,0 +1,25 @@
+.truncate{
+    display: block;
+    white-space: nowrap;
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.example-header-image{
+    background-image: url("/assets/exam.png");
+    background-size: cover;
+}
+.action button:hover{
+    color: red;
+    background-color: lightblue;
+}
+.quizzes{
+    transition: transform .3s; /* Animation */
+    margin: 0 auto;
+    border-radius: 10%;
+  }
+.quizzes:hover{
+    transform: scale(1.1);
+    box-shadow: 5px 8px 15px blueviolet;
+
+}

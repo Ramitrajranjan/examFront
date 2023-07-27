@@ -1,0 +1,24 @@
+<div class="sidebar" style="width: 280px;">
+    <mat-card>
+        <mat-action-list>
+            <div mat-subheader>Available Categories</div>
+            
+            <div class="quiz">
+                <button  mat-list-item routerLink="/user-dashboard/0">
+                    <span class="mr10"><mat-icon mat-list-icon>assignment</mat-icon> </span>
+                    All Quizzes
+                </button>
+                <button mat-list-item [routerLink]="'/user-dashboard/orderedQuiz/'+ user.id" >
+                    <span class="mr10"> <mat-icon mat-list-icon>quiz</mat-icon></span> Your Quiz
+                </button>
+                    <button 
+                        [routerLink]="'/user-dashboard/'+ c.id" 
+                        mat-list-item
+                        *ngFor="let c of categories">
+                        <span class="mr10"><mat-icon mat-list-icon>assignment</mat-icon> </span>{{c.title}}
+                    </button>
+            </div>
+                
+        </mat-action-list>
+    </mat-card>
+</div>
