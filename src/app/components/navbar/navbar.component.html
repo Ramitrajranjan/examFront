@@ -4,94 +4,67 @@
 
       <span *ngIf="isSubmit">
         <div class="logo">
-          <button 
-            routerLink="/"
-            mat-icon-button class="example-icon" 
-            aria-label="Example icon-button with menu icon">      
+          <button routerLink="/" mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
             <mat-icon style="margin-right: 5px;">menu_book</mat-icon> QuizBucket
           </button>
-          </div>
+        </div>
       </span>
-      
+
       <span *ngIf="!isSubmit">
         <span *ngIf="role==='ADMIN'">
           <div class="logo">
-            <button 
-              routerLink="/admin/"
-              mat-icon-button class="example-icon" 
-              aria-label="Example icon-button with menu icon">      
+            <button routerLink="/admin/" mat-icon-button class="example-icon"
+              aria-label="Example icon-button with menu icon">
               <mat-icon style="margin-right: 5px;">menu_book</mat-icon> QuizBucket
             </button>
-            </div>
+          </div>
         </span>
-  
+
         <span *ngIf="role==='NORMAL'">
           <div class="logo">
-            <button 
-              routerLink="/user-dashboard/0"
-              mat-icon-button class="example-icon" 
-              aria-label="Example icon-button with menu icon">      
+            <button routerLink="/user-dashboard/0" mat-icon-button class="example-icon"
+              aria-label="Example icon-button with menu icon">
               <mat-icon style="margin-right: 5px;">menu_book</mat-icon> QuizBucket
             </button>
-            </div>
+          </div>
         </span>
       </span>
-      
+
       <span class="hello"></span>
-        <button
-        *ngIf="!isLoggedIn" 
-        routerLink="/login" 
-        mat-button
-        class="example-icon ml20">
-          Login
-        </button>
-    
-        <button
-        *ngIf="!isLoggedIn"
-        routerLink="/signup"
-        mat-button 
-        class="example-icon mr20 ml20">
-          Signup
-        </button>
-
-
-        <span *ngIf="role==='ADMIN'">
-          <button
-            *ngIf="isLoggedIn && user"
-            mat-button class="example-icon ml20"
-            routerLink="/admin/profile">
-            {{user.username}}
-          </button>
-        </span>
-        
-        <span *ngIf="role==='NORMAL'">
-          <button
-            *ngIf="isLoggedIn && user"
-            mat-button class="example-icon ml20"
-            routerLink="/user-dashboard/user-profile">
-            {{user.username}}
-          </button>
-        </span>
-
-      <button
-      (click)="logout()"
-      *ngIf="isLoggedIn"
-      mat-button class="example-icon ml20">
-      <mat-icon>logout</mat-icon> Logout
+      <button *ngIf="!isLoggedIn" routerLink="/login" mat-button class="example-icon ml20">
+        Login
       </button>
-      
-      <span *ngIf="role==='NORMAL'">
-        <button
-        *ngIf="isLoggedIn && user"
-        mat-button class="example-icon ml20 "
-        routerLink="/basket" >
-        <mat-icon style="font-size: 20px;">shopping_basket</mat-icon>
-        <div style="font-size: 15px; color: darkorange;">{{totalQuizzes}}</div>
-      </button> 
-      </span>
-           
 
-  </mat-toolbar>
-</div>
+      <button *ngIf="!isLoggedIn" routerLink="/signup" mat-button class="example-icon mr20 ml20">
+        Signup
+      </button>
+
+
+      <span *ngIf="role==='ADMIN'">
+        <button *ngIf="isLoggedIn && user" mat-button class="example-icon ml20" routerLink="/admin/profile">
+          {{user.username}}
+        </button>
+
+      </span>
+
+      <span *ngIf="role==='NORMAL'">
+        <button *ngIf="isLoggedIn && user" mat-button class="example-icon ml20"
+          routerLink="/user-dashboard/user-profile">
+          {{user.username}}
+        </button>
+      </span>
+      <button (click)="logout()" *ngIf="isLoggedIn" mat-button class="example-icon ml20">
+        <mat-icon>logout</mat-icon> Logout
+      </button>
+
+      <span *ngIf="role==='NORMAL'">
+        <button *ngIf="isLoggedIn && user" mat-button class="example-icon ml20 " routerLink="/basket">
+          <mat-icon style="font-size: 20px;">shopping_basket</mat-icon>
+          <div style="font-size: 15px; color: darkorange;">{{totalQuizzes}}</div>
+        </button>
+      </span>
+
+
+    </mat-toolbar>
+  </div>
 </span>
-  

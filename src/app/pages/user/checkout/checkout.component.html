@@ -30,27 +30,29 @@
         <button *ngIf="totalAmount" mat-raised-button 
             class="ml20"
             style="color: white; background-color: green;"  
-            (click)="payment()" >
+            (click)="createTransactionAndPlaceOrder()" >
             Make Payment
         </button> 
     </div>
 
     <div class="container" *ngIf="!isSubmit">
-        <div style="background-color: burlywood;">
-        <h1 class="mt20 mb20 text-center">Your Created Order <span><strong>20EX{{createdOrder.user.id}}23A{{createdOrder.id}}</strong></span></h1>
+        <div style="background-color: burlywood;" class="mt10">
+        <h1 class="mt20 mb20 text-center"> Order Number <span><strong>20EX{{createdOrder.user.id}}23A{{createdOrder.id}}</strong></span></h1>
         </div>
         <div class="mt20 mb20">
             <h3 class="text-center">Order Details</h3>
             <table class="table table-striped">
                 <tr style="background-color: lightcyan;">
-                    <td>OrderId</td>
+                    <td>Order Id</td>
                     <td>Order Date</td>
                     <td>Total Amount</td>
+                    <td>Payment Id</td>
                 </tr>
                 <tr>
                     <td>{{createdOrder.id}}</td>
                     <td>{{createdOrder.orderDate}}</td>
-                    <td>{{createdOrder.price}}</td>
+                    <td>₹ {{createdOrder.price}}</td>
+                    <td>{{createdOrder.transactionId}}</td>
                 </tr>
             </table>
         </div>
@@ -90,7 +92,7 @@
         </div>
     </div>
     <div class=" text-center mt20" *ngIf="!isSubmit">
-        <h3 ><strong>Paid Amount:  </strong> <span style="color: red;"><strong>{{createdOrder.price}}</strong></span> </h3>
+        <h3 ><strong>Paid Amount:  </strong> <span style="color: red;"><strong>₹ {{createdOrder.price}}</strong></span> </h3>
     </div>
     <div class="text-center mt20" style="position: relative;" *ngIf="!isSubmit">
         <button mat-raised-button color="primary"  routerLink="/user-dashboard/0">

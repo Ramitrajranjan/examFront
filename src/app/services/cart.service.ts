@@ -1,6 +1,8 @@
 import { Injectable, OnInit } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { LoginService } from './login.service';
+import { HttpClient } from '@angular/common/http';
+import baseUrl from './helper';
 
 @Injectable({
   providedIn: 'root'
@@ -10,10 +12,13 @@ export class CartService implements OnInit{
   public cartItemList:any=[]
   public quizList=new BehaviorSubject<any>([]);
   public totalAmount=0
-  constructor() { }
-  ngOnInit(): void {
-    
+  constructor(private httpClient:HttpClient) { }
+  ngOnInit(): void { 
   }
+  public createTransaction(amount:any){
+    return this.httpClient.get(`${baseUrl}/createOrder/createTransaction/${amount}`);
+  }
+  
   getquizzes(){
     return this.quizList.asObservable();
   }

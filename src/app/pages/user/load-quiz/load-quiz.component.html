@@ -24,11 +24,18 @@
                             <!-- <button mat-button color="primary"> <span>Ques:{{q.numberOfQuestions}}</span></button>
                             <button mat-button color="primary"><span>M.M:{{q.maxMarks}}</span></button> -->
                             <button mat-button color="primary"><span>Price: Rs {{q.price}}</span></button>
-                            <button mat-button color="primary" id="buyButton"
+                            <span *ngIf="!q.cart">
+                                <button mat-button color="primary" id="buyButton"class="ml10" 
                                 (click)="addToCart(q)">
-                                <mat-icon>shopping_cart</mat-icon> Buy
-                            </button> 
-                                                      
+                                <mat-icon>shopping_cart</mat-icon> Add to Cart
+                            </button>
+                            </span>                            
+                            <span *ngIf="q.cart">
+                                <button mat-button style="background-color: yellowgreen; color: white;" 
+                                id="buyButton" class="ml10"  routerLink="/basket">
+                                <mat-icon>shopping_cart</mat-icon> Go to Cart
+                            </button>
+                            </span>                            
                         </mat-card-actions>
                     </mat-card>
                 </div>

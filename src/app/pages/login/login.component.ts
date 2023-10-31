@@ -27,11 +27,10 @@ export class LoginComponent {
       this.loginService.generateToken(this.loginData).subscribe( (data:any)=>{
       //login
       this.loginService.loginUser(data.token);
-      this.loginService.token=data.token;
+
       this.loginService.getCurrentUser().subscribe(
-        (user:any)=>{  
-          localStorage.setItem("user",user)
-          this.loginService.user=user;         
+        (user:any)=>{ 
+          this.loginService.setUser(user) 
           //redirect.... admin
           if(this.loginService.getUserRole()=="ADMIN")
           {

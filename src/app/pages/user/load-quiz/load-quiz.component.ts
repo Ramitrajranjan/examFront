@@ -20,14 +20,23 @@ export class LoadQuizComponent implements OnInit{
       this.catId=params['catId'];
       if(this.catId==0){
         this.quiz.getActiveQuizzes().subscribe(data=>{
-          this.quizzes=data;});
+          this.quizzes=data;
+          this.quizzes.forEach((n:any) => {
+            Object.assign(n, {cart: 0});
+          });
+        });
       }else{
         this.quiz.getActiveQuizzesOfCategory(this.catId).subscribe(data=>{
-          this.quizzes=data;});
+          this.quizzes=data;
+          this.quizzes.forEach((n:any) => {
+            Object.assign(n, {cart: 0});
+          });
+        });
       }
-    });
+    }); 
   }
   addToCart(quiz:any){  
-    this.cartService.addToCart(quiz);    
+    this.cartService.addToCart(quiz);
+    quiz.cart=1    
   }
 }

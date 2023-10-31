@@ -21,6 +21,7 @@ export class LoginService implements OnInit{
   //login user: set token in local storage
   public loginUser(token:any){
     this.token=token;
+    localStorage.setItem('token',token);
     return true;
   }
   //get current user
@@ -29,7 +30,7 @@ export class LoginService implements OnInit{
   }
   //user is logged in or not
   public isLoggedIn(){
-    let tokenStr=this.token;
+    let tokenStr=localStorage.getItem("token");
     if(tokenStr==undefined||tokenStr==''||tokenStr==null){
       return false;
     }else{
@@ -42,16 +43,16 @@ export class LoginService implements OnInit{
   }
 
   // set user detail
-  public setUser(user:any){
-    this.user=user;
+  public setUser(user:any){ 
+    localStorage.setItem("user",JSON.stringify(user));
     return user.id;
   }
 
   //get user details
   public getUser(){
-    let userStr=this.user;
+    let userStr=localStorage.getItem("user");
     if(userStr!=null){
-      return userStr;
+      return JSON.parse(userStr);
     }else{
       this.logout();
       return null;
@@ -60,13 +61,16 @@ export class LoginService implements OnInit{
   //get user role
   public getUserRole()
   {
-    return this.user.authorities[0].authority;
+    let user=this.getUser();
+    localStorage.setItem("Role",user.authorities[0].authority);
+    return user.authorities[0].authority;
   }
 
 
   //logout :remove token from the local storage
   public logout()
   {
+    localStorage.clear();
     return true;
   }
 

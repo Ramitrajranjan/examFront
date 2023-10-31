@@ -1,7 +1,10 @@
-
+.quiz button{
+    border-radius: 1 solid black;
+}
 .quiz button:hover{
-    background-color: bisque;
+    background-color: rgba(79, 81, 167, 0.705);
 } 
 .sidebar{
     position: fixed;
+    margin-top: 20px;
 }
